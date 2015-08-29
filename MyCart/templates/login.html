@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% if form.errors %}
+<p class="error">Sorry, that not a valid username and password</p>
+{% endif %}
+<div class="container">
+    <br><br>
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <form class="form-signin" action="/mycart/accounts/auth/" method="post">{% csrf_token %}
+                <legend style="color:#111">Login to My Cart</legend>
+                <div class="form-group">
+                    <label class="sr-only" for="username" >User Name</label>
+                    <input class="form-control" type="text" name="username" value="" placeholder="username" id="username" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="form-control" type="password" name="password" value="" placeholder="password" id="password" required>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="login" style="color: #FFF; background-color: #3b302C; border-color: #3b302C;">Sign in</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+
+

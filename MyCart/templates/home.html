@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+<div class="container">
+    <br><br>
+    <div class="panel panel-default bootcards-summary">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <a class="bootcards-summary-item" href="/mycart/get/catalog/">
+                        <i class="fa fa-5x fa-clipboard" style="color:#aaa"></i>
+                        <h4>Catalog</h4>
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                    <a class="bootcards-summary-item" href="/mycart/get/mycart/">
+                        <i class="fa fa-5x fa-shopping-cart" style="color:#aaa"></i>
+                        <h4>My Cart</h4>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+
+<div class="container col-sm-12">
+
+    {% if v_category %}
+    {% for c in v_category %}
+    <br>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <center>
+                <h3 class="panel-title">{{c}}</h3>
+            </center>
+        </div>
+
+        <div class="list-group">
+            {% for obj in v_catalog %}
+            {% if obj.product_category == c %}
+
+            <div class="list-group">
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-camera-retro pull-left"></i>
+                    <label>{{obj.product_name}}</label>
+                    <form id="post-form" class="form-signin" action="/mycart/remove-from-cart/" method="post">{% csrf_token %}
+                        <input type="hidden" name="prd-id" value="{{obj.product_id}}">
+                        <button type="submit" class="btn btn-info btn-xs pull-right" value="login">
+                            remove
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="col-xs-12 col-sm-2">
+        <br>
+        <center>
+            <i class="fa fa-hand-o-right" style="color:#449D44"> </i>
+            No Items in Your Cart.
+            <i class="fa fa-hand-o-left" style="color:#449D44"> </i>
+        </center>
+        <br>
+    </div>
+    {% endif %}
+
+    <br><br>
+
+</div>
+{% endblock %}

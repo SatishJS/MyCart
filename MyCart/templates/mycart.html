@@ -1,5 +1,20 @@
 {% extends 'base.html' %} {% load staticfiles %} {% block content %}
 
+<script type="text/javascript">
+    function getProductPriceById(id)
+    {
+        var minPriceUrl = "http://localhost:8080/mykart-api/product/getMinPriceById/" + id;
+
+        $.ajax({
+            url: minPriceUrl,
+            success: function(data){
+                var data = JSON.parse(data)[0];
+                $("#minprice_"+id).html("Price : " + data.minprice + " - " + data.vendor_name);
+            }
+        });
+    }
+</script>
+
 <div class="container col-sm-12">
 
     {% if v_category %}
@@ -17,11 +32,11 @@
         <div class="list-group">
             {% for obj in v_catalog %}
             {% if obj.product_category == c %}
-
             <div class="list-group">
                 <div class="list-group-item">
                     <i class="fa fa-2x fa-camera-retro pull-left"></i>
                     <label>{{obj.product_name}}</label>
+                    <label id="minprice_{{obj.product_id}}"><script>getProductPriceById("{{obj.product_id}}")</script></label>
                     <form id="post-form" class="form-signin" action="/mycart/remove-from-cart/" method="post">{% csrf_token %}
                         <input type="hidden" name="prd-id" value="{{obj.product_id}}">
                         <button type="submit" class="btn btn-info btn-xs pull-right" value="login">

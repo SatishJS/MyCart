@@ -14,7 +14,7 @@ def insert_data(overwrite=False, verbosity=1):
     # json_data = json.load(fp)
     # fp.close()
 
-    json_data = json.load(urllib2.urlopen("http://127.0.0.1:8080/mykart-api/product/list"))
+    json_data = json.load(urllib2.urlopen("http://54.157.29.215:8080/mykart-api/product/list"))
 
     # {u'categoryname': u'grains', u'id': 177, u'name': u'Channa Dal'}
     for each in json_data:

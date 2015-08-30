@@ -74,13 +74,7 @@ def my_cart(request):
     p_catalog  = ProductCatalog.objects.filter(product_id__in=user_cart.values_list('product_id', flat=True))
 
     p_category = p_catalog.values_list('product_category', flat=True).distinct()
-    minPriceDict = {"":""}
-    # vendorDict = {"":""}
-    minPriceUrl = "http://localhost:8080/mykart-api/product/getMinPriceById/"
-    for itr in p_catalog: 
-        resp = requests.get(minPriceUrl + itr.product_id)
-        jsonObj = resp.json()
-        minPriceDict[itr.product_id] = jsonObj[0]["minprice"]         
+
     c = {}
     c.update({'full_name': request.user.username})
     c.update({'v_category': p_category})

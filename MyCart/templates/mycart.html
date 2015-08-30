@@ -3,13 +3,12 @@
 <script type="text/javascript">
     function getProductPriceById(id)
     {
-        var minPriceUrl = "http://localhost:8080/mykart-api/product/getMinPriceById/" + id;
-
+        var minPriceUrl = "http://54.157.29.215:8080/mykart-api/product/getMinPriceById/" + id;
         $.ajax({
             url: minPriceUrl,
             success: function(data){
                 var data = JSON.parse(data)[0];
-                $("#minprice_"+id).html("Price : " + data.minprice + " - " + data.vendor_name);
+                $("#minprice_"+id).html("Rs. " + data.minprice + " (" + data.vendor_name + ")");
             }
         });
     }
@@ -37,6 +36,9 @@
                     <i class="fa fa-2x fa-camera-retro pull-left"></i>
                     <label>{{obj.product_name}}</label>
                     <label id="minprice_{{obj.product_id}}"><script>getProductPriceById("{{obj.product_id}}")</script></label>
+                    <button class="btn btn-success btn-xs pull-right">
+                            buy
+                    </button>
                     <form id="post-form" class="form-signin" action="/mycart/remove-from-cart/" method="post">{% csrf_token %}
                         <input type="hidden" name="prd-id" value="{{obj.product_id}}">
                         <button type="submit" class="btn btn-info btn-xs pull-right" value="login">

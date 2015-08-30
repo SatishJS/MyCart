@@ -12,6 +12,15 @@
             }
         });
     }
+
+    setInterval(refresh_prices, 30000);
+
+    function refresh_prices() {
+        $("label[id^='minprice_']").each( function() {
+            var id = this.id.split("_")[1];
+            getProductPriceById(id);
+        });
+    }
 </script>
 
 <div class="container col-sm-12">
